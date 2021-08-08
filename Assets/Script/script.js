@@ -22,14 +22,14 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-  var password = parseInt(prompt("How many characters would you like your password to be? (Must be between 8 and 128 charcters"));
+  var passcode = parseInt(prompt("How many characters would you like your password to be? (Must be between 8 and 128 charcters"));
 
-  if (!password) {
+  if (!passcode) {
     alert("Please enter a number!")
   }
-  else if (password < 8 || password >128) {
+  else if (passcode < 8 || passcode >128) {
     alert("Must Be Between 8 and 128 characters long");
-    console.log(password);
+    console.log(passcode);
   }
   else {
     specialChar = confirm("Will this include special characters?");
@@ -85,15 +85,35 @@ function writePassword() {
   }
 
   var passOptions = {
-    choices,
-    password,
-  }
-  return;
+    passcode,
+    specialChar,
+    numbers,
+    capitalLet,
+    lowerLet,
+  };
 
-  function generatePassword() {}
+  return passOptions;
+}
 
+function getSpecialChar() {
+  return specialChar[Math.floor(Math.random() * specialChar.length)];
+}
+
+function getNumbers() {
+  return numbers[Math.floor(Math.random() * numbers.length)];
+}
+
+function getCapitalLet() {
+  return capitalLet[Math.floor(Math.random() * capitalLet.length)];
+}
+
+function getLowerLet() {
+  return lowerLet[Math.floor(Math.random() * lowerLet.length)];
+}
+
+
+function generatePassword() {
   
- 
 }
 
 // Add event listener to generate button
