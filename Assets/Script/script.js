@@ -16,12 +16,9 @@ var numCap = numbers.concat("capitalLet");
 var numLow = numbers.concat("lowerLet");
 var capLow = capitalLet.concat("lowerLet");
 
-
-
-
 // Write password to the #password input
 function writePassword() {
-  //var password = generatePassword();
+  var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
@@ -32,6 +29,7 @@ function writePassword() {
   }
   else if (password < 8 || password >128) {
     alert("Must Be Between 8 and 128 characters long");
+    console.log(password);
   }
   else {
     specialChar = confirm("Will this include special characters?");
@@ -85,6 +83,17 @@ function writePassword() {
   else if (lowerLet) {
     choices = lowerLet;
   }
+
+  var passOptions = {
+    choices,
+    password,
+  }
+  return;
+
+  function generatePassword() {}
+
+  
+ 
 }
 
 // Add event listener to generate button
