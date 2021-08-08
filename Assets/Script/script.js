@@ -4,6 +4,19 @@ var specialChar = ["@","!","#","$","%","`","^","&","*","*","(",")","_","-","<","
 var numbers = ["1","2","3","4","5","6","7","8","9","0"];
 var capitalLet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var lowerLet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+var all = specialChar.concat("numbers", "capitalLet", "lowerLet");
+var speNumCap = specialChar.concat("numbers", "capitalLet"); 
+var speNumLow = specialChar.concat("numbers", "lowerLet");
+var speCapLow = specialChar.concat("capitalLet", "lowerLet");
+var numCapLow = numbers.concat("capitalLet","lowerLet");
+var speNum = specialChar.concat("numbers");
+var speCap = specialChar.concat("capitalLet");
+var speLow = specialChar.concat("lowerLet");
+var numCap = numbers.concat("capitalLet");
+var numLow = numbers.concat("lowerLet");
+var capLow = capitalLet.concat("lowerLet");
+
+
 
 
 // Write password to the #password input
@@ -18,7 +31,7 @@ function writePassword() {
     alert("Please enter a number!")
   }
   else if (password < 8 || password >128) {
-    password = parseInt(prompt("Must Be Between 8 and 128 characters long"));
+    alert("Must Be Between 8 and 128 characters long");
   }
   else {
     specialChar = confirm("Will this include special characters?");
@@ -31,46 +44,46 @@ function writePassword() {
     alert("You must select at least one option")
   }
   else if (specialChar && numbers && capitalLet && lowerLet) {
-    passwordText = specialChar.concat(numbers, capitalLet, lowerLet);
+    choices = all;
   }
   else if (specialChar && numbers && capitalLet) {
-    passwordText = specialChar.concat(numbers,capitalLet);
+    choices = speNumCap;
   }
   else if (specialChar && numbers && lowerLet) {
-    passwordText = specialChar.concat(numbers, lowerLet);
+    choices = speNumLow;
   }
   else if (specialChar && capitalLet && lowerLet) {
-    passwordText = specialChar.concat(capitalLet, lowerLet);
+    choices = speCapLow;
   }
   else if (specialChar && numbers) {
-    passwordText = specialChar.concat(numbers);
+    choices = speNum;
   }
   else if (specialChar && capitalLet) {
-    passwordText = specialChar.concat(capitalLet);
+    choices = speCap;
   }
   else if (specialChar && lowerLet) {
-    passwordText = specialChar.concat(lowerLet);
+    choices = speLow;
   }
   else if (capitalLet && numbers) {
-    passwordText = capitalLet.concat(numbers);
+    choices = numCap;
   }
   else if (capitalLet && lowerLet) {
-    passwordText = capitalLet.concat(lowerLet);
+    choices = capLow;
   }
   else if (numbers && lowerLet) {
-    passwordText = numbers.concat(lowerLet);
+    choices = numLow;
   }
   else if (specialChar) {
-    passwordText = specialChar;
+    choices = specialChar;
   }
   else if (numbers) {
-    passwordText = numbers;
+    choices = numbers;
   }
   else if (capitalLet) {
-    passwordText = capitalLet;
+    choices = capitalLet;
   }
   else if (lowerLet) {
-    passwordText = lowerLet;
+    choices = lowerLet;
   }
 }
 
