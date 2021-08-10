@@ -16,6 +16,10 @@ var numCap = numbers.concat("capitalLet");
 var numLow = numbers.concat("lowerLet");
 var capLow = capitalLet.concat("lowerLet");
 
+
+function generatePassword() {
+
+}
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
@@ -112,9 +116,7 @@ function getLowerLet() {
 }
 
 
-function generatePassword() {
-  
-}
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
