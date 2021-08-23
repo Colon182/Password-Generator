@@ -1,122 +1,105 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var specialChar = ["@","!","#","$","%","`","^","&","*","*","(",")","_","-","<",">"];
-var numbers = ["1","2","3","4","5","6","7","8","9","0"];
+var specialChar = ["@", "!", "#", "$", "%", "`", "^", "&", "*", "*", "(", ")", "_", "-", "<", ">"];
+var numberArr = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
 var capitalLet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var lowerLet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var all = specialChar.concat("numbers", "capitalLet", "lowerLet");
-var speNumCap = specialChar.concat("numbers", "capitalLet"); 
-var speNumLow = specialChar.concat("numbers", "lowerLet");
-var speCapLow = specialChar.concat("capitalLet", "lowerLet");
-var numCapLow = numbers.concat("capitalLet","lowerLet");
-var speNum = specialChar.concat("numbers");
-var speCap = specialChar.concat("capitalLet");
-var speLow = specialChar.concat("lowerLet");
-var numCap = numbers.concat("capitalLet");
-var numLow = numbers.concat("lowerLet");
-var capLow = capitalLet.concat("lowerLet");
 
-
-function generatePassword() {
-
-}
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+
+
+
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+function userPrompts() {
+  // variable to grab user input of password length
   var passcode = parseInt(prompt("How many characters would you like your password to be? (Must be between 8 and 128 charcters"));
 
   if (!passcode) {
     alert("Please enter a number!")
   }
-  else if (passcode < 8 || passcode >128) {
+  else if (passcode < 8 || passcode > 128) {
     alert("Must Be Between 8 and 128 characters long");
-    console.log(passcode);
+    return null;
   }
-  else {
-    specialChar = confirm("Will this include special characters?");
-    numbers = confirm("Will this include numbers?");
-    capitalLet = confirm("Will this include capital letters?");
-    lowerLet = confirm("Will this include lowercase letters?");
+  var specialCharChoice = confirm("Will this include special characters?");
+  var numbersChoice = confirm("Will this include numbers?");
+  var capitalLetChoice = confirm("Will this include capital letters?");
+  var lowerLetChoice = confirm("Will this include lowercase letters?");
+
+  // validate if user has chosen one character type
+  if (specialCharChoice === false &&
+    numbersChoice === false &&
+    capitalLetChoice === false &&
+    lowerLetChoice === false) {
+    alert("Choose at least one character type!");
+    return null;
   }
 
-  if (!specialChar && !numbers && !capitalLet && !lowerLet) {
-    alert("You must select at least one option")
-  }
-  else if (specialChar && numbers && capitalLet && lowerLet) {
-    choices = all;
-  }
-  else if (specialChar && numbers && capitalLet) {
-    choices = speNumCap;
-  }
-  else if (specialChar && numbers && lowerLet) {
-    choices = speNumLow;
-  }
-  else if (specialChar && capitalLet && lowerLet) {
-    choices = speCapLow;
-  }
-  else if (specialChar && numbers) {
-    choices = speNum;
-  }
-  else if (specialChar && capitalLet) {
-    choices = speCap;
-  }
-  else if (specialChar && lowerLet) {
-    choices = speLow;
-  }
-  else if (capitalLet && numbers) {
-    choices = numCap;
-  }
-  else if (capitalLet && lowerLet) {
-    choices = capLow;
-  }
-  else if (numbers && lowerLet) {
-    choices = numLow;
-  }
-  else if (specialChar) {
-    choices = specialChar;
-  }
-  else if (numbers) {
-    choices = numbers;
-  }
-  else if (capitalLet) {
-    choices = capitalLet;
-  }
-  else if (lowerLet) {
-    choices = lowerLet;
-  }
 
-  var passOptions = {
-    passcode,
-    specialChar,
-    numbers,
-    capitalLet,
-    lowerLet,
-  };
 
-  return passOptions;
+  // object to store input
+  var userInput = {
+    length: passcode,
+    special: specialCharChoice,
+    numbers: numbersChoice,
+    capitals: capitalLetChoice,
+    lowers: lowerLetChoice
+  }
+  return userInput;
 }
 
-function getSpecialChar() {
-  return specialChar[Math.floor(Math.random() * specialChar.length)];
+// function to grab user selected character types and randomly select from arrays of the selected characters
+function randomizeInputs(index) {
+  var ranInd = Math.floor(Math.random() * index.length);
+  var ranPass = index[ranInd]
+  return ranPass;
 }
 
-function getNumbers() {
-  return numbers[Math.floor(Math.random() * numbers.length)];
-}
+// console.log(randomizeInputs(specialChar));
+// console.log(randomizeInputs(numberArr));
+// console.log(randomizeInputs(capitalLet));
+// console.log(randomizeInputs(lowerLet));
 
-function getCapitalLet() {
-  return capitalLet[Math.floor(Math.random() * capitalLet.length)];
-}
+function generatePassword() {
+  var input = userPrompts();
+  // empty array to store password characters
+  var pwArray = [];
+  // empty array to store characters 
+  var charArr = [];
+  // empty array to store type arrays 
+  var typeArr = [];
 
-function getLowerLet() {
-  return lowerLet[Math.floor(Math.random() * lowerLet.length)];
+  if (input.special) {
+    charArr = charArr.concat(specialChar);
+    typeArr.push(randomizeInputs(specialChar));
+  }
+  else if (input.numbers) {
+    charArr = charArr.concat(numberArr);
+    typeArr.push(randomizeInputs(numberArr));
+  }
+  else if (input.capitals) {
+    charArr = charArr.concat(capitalLet);
+    typeArr.push(randomizeInputs(capitalLet));
+  }
+  else if (input.lowers) {
+    charArr = charArr.concat(lowerLet);
+    typeArr.push(randomizeInputs(lowerLet));
+  }
+  
+  for (var i = 0; i < charArr.length; i++) {
+    pwArray.push(charArr.length);
+  }
+  
 }
 
 
 
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
