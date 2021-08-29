@@ -71,6 +71,7 @@ function randomizeInputs(index) {
 
 function generatePassword() {
   var input = userPrompts();
+  console.log(input)
   // empty array to store password characters
   var pwArray = [];
   // empty array to store characters 
@@ -78,27 +79,36 @@ function generatePassword() {
   // empty array to store type arrays 
   var typeArr = [];
 
-  if (input.special) {
+  if (input.special === true) {
     charArr = charArr.concat(specialChar);
     typeArr.push(randomizeInputs(specialChar));
-  }
-  else if (input.numbers) {
+    // console.log(charArr);
+  
+  } 
+  
+  if (input.numbers === true) {
     charArr = charArr.concat(numberArr);
     typeArr.push(randomizeInputs(numberArr));
+    console.log(charArr);
   }
-  else if (input.capitals) {
+  
+  if (input.capitals === true) {
     charArr = charArr.concat(capitalLet);
     typeArr.push(randomizeInputs(capitalLet));
+    console.log(charArr);
   }
-  else if (input.lowers) {
+  if (input.lowers === true) {
     charArr = charArr.concat(lowerLet);
     typeArr.push(randomizeInputs(lowerLet));
+    console.log(charArr);
   }
+  console.log(charArr);
+  console.log(typeArr);
   
-  for (var i = 0; i < charArr.length; i++) {
-    pwArray.push(charArr.length);
+  for (var i = 0; i < typeArr.length; i++) {
+    pwArray.push(typeArr);
+    pwArray.join("");
   }
-  
 }
 
 
