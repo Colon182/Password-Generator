@@ -48,7 +48,7 @@ function userPrompts() {
 
   // object to store input
   var userInput = {
-    length: passcode,
+    passLength: passcode,
     special: specialCharChoice,
     numbers: numbersChoice,
     capitals: capitalLetChoice,
@@ -64,10 +64,10 @@ function randomizeInputs(index) {
   return ranPass;
 }
 
-// console.log(randomizeInputs(specialChar));
-// console.log(randomizeInputs(numberArr));
-// console.log(randomizeInputs(capitalLet));
-// console.log(randomizeInputs(lowerLet));
+console.log(randomizeInputs(specialChar));
+console.log(randomizeInputs(numberArr));
+console.log(randomizeInputs(capitalLet));
+console.log(randomizeInputs(lowerLet));
 
 function generatePassword() {
   var input = userPrompts();
@@ -76,38 +76,31 @@ function generatePassword() {
   var pwArray = [];
   // empty array to store characters 
   var charArr = [];
-  // empty array to store type arrays 
-  var typeArr = [];
-
+  
   if (input.special === true) {
     charArr = charArr.concat(specialChar);
-    typeArr.push(randomizeInputs(specialChar));
     // console.log(charArr);
-  
   } 
   
   if (input.numbers === true) {
     charArr = charArr.concat(numberArr);
-    typeArr.push(randomizeInputs(numberArr));
-    console.log(charArr);
+    // console.log(charArr);
   }
   
   if (input.capitals === true) {
     charArr = charArr.concat(capitalLet);
-    typeArr.push(randomizeInputs(capitalLet));
-    console.log(charArr);
+    // console.log(charArr);
   }
   if (input.lowers === true) {
     charArr = charArr.concat(lowerLet);
-    typeArr.push(randomizeInputs(lowerLet));
-    console.log(charArr);
+    // console.log(charArr);
   }
   console.log(charArr);
-  console.log(typeArr);
+  // console.log(typeArr);
   
-  for (var i = 0; i < typeArr.length; i++) {
-    pwArray.push(typeArr);
-    pwArray.join("");
+  for (var i = 0; i < charArr.length; i++) {
+    pwArray.push(charArr.join(''));
+    return pwArray;
   }
 }
 
