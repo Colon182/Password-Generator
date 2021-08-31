@@ -11,9 +11,6 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
-
-
 }
 
 // Add event listener to generate button
@@ -48,7 +45,7 @@ function userPrompts() {
 
   // object to store input
   var userInput = {
-    passLength: passcode,
+    length: passcode,
     special: specialCharChoice,
     numbers: numbersChoice,
     capitals: capitalLetChoice,
@@ -76,7 +73,7 @@ function generatePassword() {
   var pwArray = [];
   // empty array to store characters 
   var charArr = [];
-  
+
   if (input.special === true) {
     charArr = charArr.concat(specialChar);
     // console.log(charArr);
@@ -96,12 +93,12 @@ function generatePassword() {
     // console.log(charArr);
   }
   console.log(charArr);
-  // console.log(typeArr);
   
-  for (var i = 0; i < charArr.length; i++) {
-    pwArray.push(charArr.join(''));
-    return pwArray;
+  for (var i = 0; i < input.length; i++) {
+    var passfinal = randomizeInputs(charArr);
+    pwArray.push(passfinal);
   }
+  return pwArray.join('');
 }
 
 
