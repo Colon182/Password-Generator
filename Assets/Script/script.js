@@ -45,7 +45,7 @@ function userPrompts() {
 
   // object to store input
   var userInput = {
-    length: passcode,
+    passLength: passcode,
     special: specialCharChoice,
     numbers: numbersChoice,
     capitals: capitalLetChoice,
@@ -94,7 +94,7 @@ function generatePassword() {
   }
   console.log(charArr);
   
-  for (var i = 0; i < input.length; i++) {
+  for (var i = 0; i < input.passLength; i++) {
     var passfinal = randomizeInputs(charArr);
     pwArray.push(passfinal);
   }
